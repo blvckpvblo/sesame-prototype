@@ -1,3 +1,4 @@
+package main;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,11 +9,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-class Main {
-
-    private static String _FILENAME = "res/data.json";
-    private static JSONArray scales = getScales(_FILENAME);
+public class Sesame {
+    public static String _FILENAME = "/Users/momar/Documents/soft_eng/sesame-prototype/res/data.json";
+    static JSONArray scales = getScales(_FILENAME);
     private static boolean isInputValid = false;
+
 
     public static void main(String[] args) {
         String[] input = {};
@@ -34,7 +35,7 @@ class Main {
     }
 
     // Get JSON data
-    private static JSONArray getScales(String filename) {
+    public static JSONArray getScales(String filename) {
         try {
             FileReader reader = new FileReader(filename);
             JSONTokener token = new JSONTokener(reader);
@@ -51,8 +52,12 @@ class Main {
         return null;
     }
 
-    // Check key
-    private static ArrayList<String> getScale(String[] notes) {
+    /**
+     * Get the scale given an array of notes
+     * @param notes the array of notes
+     * @return a list of scale that corresponds
+     */
+    public static ArrayList<String> getScale(String[] notes) {
         ArrayList<String> results = new ArrayList<String>();
 
         for (Object o : scales) {
@@ -87,7 +92,7 @@ class Main {
     }
 
     // Get User Input
-    private static String[] readUserInput(Scanner in) {
+    public static String[] readUserInput(Scanner in) {
         String[] formattedInput;
 
         System.out.println("Enter notes (i.e. C F# G A): ");
@@ -104,12 +109,12 @@ class Main {
     }
 
     // Format input
-    private static String[] formatInput(String input) {
+    public static String[] formatInput(String input) {
         return input.split("[\s]");
     }
 
     // Validate input
-    private static boolean validateInput(String input) {
+    public static boolean validateInput(String input) {
         input = input.concat(";");
         String regex = "^([A-G][#|b]{0,1}[\\s|;]{1}){0,}$";
         Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
