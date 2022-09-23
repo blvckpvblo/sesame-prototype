@@ -75,8 +75,10 @@ class Main {
                     }
                 }
 
-                if (counter == notes.length) {
-                    results.add((String) a.names().get(0));
+                String scale = (String) a.names().get(0);
+
+                if (counter == notes.length & !results.contains(scale)) {
+                    results.add(scale);
                 }
             }
         }
