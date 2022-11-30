@@ -10,7 +10,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 public class Sesame {
-    public static String _FILENAME = "/Users/momar/Documents/soft_eng/rumiya/sesame-prototype/res/data.json";
+    public static String _FILENAME = "/Users/momar/Documents/dev/rumiya/sesame-prototype/res/data.json";
     static JSONArray scales = getScales(_FILENAME);
     private static boolean isInputValid = false;
 
