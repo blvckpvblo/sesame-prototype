@@ -2,6 +2,7 @@ package main;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -10,13 +11,13 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 public class Sesame {
-    public static String _FILENAME = "/Users/momar/Documents/dev/rumiya/sesame-prototype/res/data.json";
-    static JSONArray scales = getScales(_FILENAME);
+    public static final String FILENAME = "/Users/momar/Documents/dev/the-pink-channel/sesame-prototype/res/data.json";
+    static JSONArray scales = getScales(FILENAME);
     private static boolean isInputValid = false;
 
 
     public static void main(String[] args) {
-        String[] input = {};
+        String[] input;
         Scanner in = new Scanner(System.in);
 
         input = readUserInput(in);
@@ -28,10 +29,8 @@ public class Sesame {
 
         in.close();
 
-        ArrayList<String> result = getScale(input);
+        List<String> result = getScale(input);
         System.out.println(result);
-
-        return;
     }
 
     // Get JSON data
@@ -57,8 +56,8 @@ public class Sesame {
      * @param notes the array of notes
      * @return a list of scale that corresponds
      */
-    public static ArrayList<String> getScale(String[] notes) {
-        ArrayList<String> results = new ArrayList<String>();
+    public static List<String> getScale(String[] notes) {
+        List<String> results = new ArrayList<>();
 
         for (Object o : scales) {
             JSONObject a = (JSONObject) o;
@@ -82,7 +81,7 @@ public class Sesame {
 
                 String scale = (String) a.names().get(0);
 
-                if (counter == notes.length & !results.contains(scale)) {
+                if (counter == notes.length && !results.contains(scale)) {
                     results.add(scale);
                 }
             }
@@ -119,9 +118,10 @@ public class Sesame {
         String regex = "^([A-G][#|b]{0,1}[\\s|;]{1}){0,}$";
         Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
         Matcher matcher = pattern.matcher(input);
+        boolean isInputValid =  false;
 
-        if (matcher.find()) return true;
+        if (matcher.find()) isInputValid = true;
 
-        return false;
+        return isInputValid;
     }
 }
